@@ -1,0 +1,53 @@
+<div class="center p-24 pb-56">
+    <div class="form-container">
+        <div class="form-group">
+            <input type="search" class="form-control" name="searchText" [(ngModel)]="searchText" autocomplete="off"
+                (keyup.enter)="search(searchNgModel)" #searchNgModel="ngModel" appCustomValidator placeholder="Search Movies"
+                aria-label="Search Movies"
+                [class.is-invalid]="(searchNgModel.touched || searchNgModel.dirty) && searchNgModel.errors && searchNgModel.errors['searchTextInvalid']">
+            <span class="invalid-feedback"
+                *ngIf="(searchNgModel.touched || searchNgModel.dirty) && searchNgModel.errors && searchNgModel.errors['searchTextInvalid']">
+                Input must be at least 3 alphanumeric characters
+            </span>
+        </div>
+    </div>
+
+    <div class="table-responsive" *blockUI="'moviesContainer'">
+        <mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
+
+            <ng-container matColumnDef="poster_path">
+                <mat-header-cell *matHeaderCellDef mat-sort-header="poster_path">Poster Path</mat-header-cell>
+                <mat-cell *matCellDef="let movie">
+                    <p class="text-truncate" [innerHTML] ="movie.poster_path"></p>
+                </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="title">
+                <mat-header-cell *matHeaderCellDef mat-sort-header="title">Title</mat-header-cell>
+                <mat-cell *matCellDef="let movie" (click)="navigateMovieDetail(movie.id)">
+                    <p class="text-truncate" [innerHTML] ="movie.title"></p>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Vote_average">
+                <mat-header-cell *matHeaderCellDef mat-sort-header="Vote_average">Vote Average</mat-header-cell>
+                <mat-cell *matCellDef="let movie">
+                    <p class="text-truncate" [innerHTML] ="movie.Vote_average"></p>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *cdkRowDef="let movie; columns: displayedColumns;"
+                matRipple>
+            </mat-row>
+        </mat-table>
+
+        <mat-paginator #paginator [length]=length [pageSize]=pageSize [pageSizeOptions]="[5, 10, 30, 100]"
+            [showFirstLastButtons]="true" (page)="handlePageEvent($event)">
+        </mat-paginator>
+
+    </div>
+
+
+</div>
