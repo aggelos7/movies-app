@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgModel } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +9,8 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Movie } from 'src/app/models/movie';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { MoviesAppService } from 'src/app/services/moviesApp.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { AddToCollectionDialogComponent } from './add-to-collection-dialog/add-to-collection-dialog.component';
 
 
 @Component({
@@ -22,7 +25,7 @@ export class SearchPageComponent implements OnInit {
   movies: Movie[] = [];
   dataSource: MatTableDataSource<Movie>;
 
-  displayedColumns: string[] = ['poster_path', 'title', 'Vote_average'];
+  displayedColumns: string[] = ['poster_path', 'title', 'Vote_average', 'add_to_collection'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -35,7 +38,9 @@ export class SearchPageComponent implements OnInit {
   constructor(
     private service: MoviesAppService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog,
+    private snackbar: SnackBarService,
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -50,7 +55,7 @@ export class SearchPageComponent implements OnInit {
 
     if (this.pageResults) this.dataSource.data = this.filterSearchResults(this.movies, this.pageSize);
 
-    if(this.pageEvent != null) this.handlePageEvent(this.pageEvent);
+    if (this.pageEvent != null) this.handlePageEvent(this.pageEvent);
   }
 
 
@@ -93,6 +98,24 @@ export class SearchPageComponent implements OnInit {
     this.localStorageService.set('this.pageResults',
       { 'data': this.movies, 'pageEvent': this.pageEvent });
     this.router.navigate([movieID]);
+  }
+
+  public addToCollection(movie: Movie) {
+    const dialogRef = this.dialog.open(AddToCollectionDialogComponent, {
+      height: '600px',
+      width: '700px',
+      data: {
+        movie: movie
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackbar.open('Movie added to collection successfully');
+      } else {
+        this.snackbar.open('Ooops something went wrong! Please try again!');
+      }
+    });
   }
 
 }

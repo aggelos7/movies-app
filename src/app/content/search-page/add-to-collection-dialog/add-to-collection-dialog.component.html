@@ -1,31 +1,26 @@
-<div class="about-content">
-    <div fxLayout="row" fxLayoutAlign="start">
-        <div class="info-line">
-            <div class="title">
-                <div class="info">
-                    <button type="button" class="rateBtn" (click)="navigateToCreateCollections()">
-                        <label class="create-collection">Create new collection</label>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="table-responsive" *blockUI="'shopContainer'">
     <mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="desc" matSortDisableClear>
 
         <ng-container matColumnDef="title">
-            <mat-header-cell *matHeaderCellDef mat-sort-header="addressCity">Title</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header="title">Title</mat-header-cell>
             <mat-cell *matCellDef="let collection">
                 <p> {{ collection.title }}</p>
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef mat-sort-header="addressLine1">Description</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header="description">Description</mat-header-cell>
             <mat-cell *matCellDef="let collection">
                 <p> {{ collection.description }}</p>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="select_collection">
+            <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
+            <mat-cell *matCellDef="let collection">
+                <button mat-menu-item class="select-collection" (click)="selectCollection(collection)" aria-label="Select">
+                    <mat-icon>checkbox</mat-icon>
+                </button>
             </mat-cell>
         </ng-container>
 

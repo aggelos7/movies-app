@@ -37,6 +37,15 @@
                 </mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="add_to_collection">
+                <mat-header-cell *matHeaderCellDef>Add To Collection</mat-header-cell>
+                <mat-cell *matCellDef="let movie">
+                    <button mat-menu-item class="add-to-collection" (click)="addToCollection(movie)" aria-label="Add to collection">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
             <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *cdkRowDef="let movie; columns: displayedColumns;"
                 matRipple>

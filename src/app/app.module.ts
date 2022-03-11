@@ -32,6 +32,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BlockUIModule } from 'ng-block-ui';
 import { ModalContainerComponent } from './content/modal-container.component';
 import { CdkTableModule } from '@angular/cdk/table';
+import { CreateCollectionPageComponent } from './content/create-collection-page/create-collection-page.component';
+import { AddToCollectionDialogComponent } from './content/search-page/add-to-collection-dialog/add-to-collection-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { CdkTableModule } from '@angular/cdk/table';
     MoviesCollectionsPageComponent,
     NavComponent,
     CustomValidatorDirective,
-    ModalContainerComponent
+    ModalContainerComponent,
+    CreateCollectionPageComponent,
+    AddToCollectionDialogComponent
   ],
   imports: [
     BlockUIModule.forRoot(),
@@ -71,7 +75,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatSnackBarModule
   ],
   entryComponents: [
-    MovieDetailsPageComponent
+    MovieDetailsPageComponent,
+    AddToCollectionDialogComponent
   ],
   exports: [
     MatSnackBarModule

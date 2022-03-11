@@ -1,0 +1,34 @@
+<form class="mat-white-bg p-24 mr-24 mb-24" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
+    [formGroup]="form">
+
+    <div class="h2 mb-24">Create New Collection</div>
+
+    <div>
+        <div class="title mb-8">
+            <label class="title-label">Title</label>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="mt-12">
+            <mat-form-field fxFlex="100">
+                <input matInput placeholder="Title"
+                    formControlName="title" required>
+            </mat-form-field>
+        </div>
+        <div class="title mb-8">
+            <label class="title-label">Description</label>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="mt-12">
+            <mat-form-field fxFlex="100">
+                <input matInput placeholder="Description"
+                    formControlName="description" required>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <div fxLayout="row">
+        <button mat-raised-button (click)="submitNewCollection()" class="mt-24">
+            Submit New Collection
+        </button>
+    </div>
+
+</form>
