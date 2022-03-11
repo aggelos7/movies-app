@@ -1,0 +1,66 @@
+.profile-box {
+    margin-bottom: 16px;
+}
+.profile-box header {
+    padding: 6px;
+}
+.profile-box header .title {
+    font-size: 20px;
+    font-weight: bold;
+}
+.profile-box header .more {
+    cursor: pointer;
+}
+.profile-box .info-container {
+    padding: 16px;
+    background-color: #fff;
+}
+.profile-box footer {
+    padding: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: rgba(0, 0, 0, 0.06);
+}
+.profile-box.info-box .info-line {
+    margin-bottom: 10px;
+}
+.profile-box.info-box .info-line .title {
+    font-size: 15px;
+    font-weight: 500;
+    padding-bottom: 4px;
+}
+.profile-box.info-box .info-line:last-child {
+    margin-bottom: 0;
+}
+
+button {
+    width: 70px;
+    height: auto;
+    background-color: #ff9f43;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    margin-left: 5px;
+}
+
+button:hover {
+    background-color: #feca57;
+    cursor: pointer;
+}
+
+button:focus {
+    border: none;
+    outline-color: #b2bec3;
+}
+
+input {
+    border: 1px solid #cecfd2;
+    border-radius: 5px;
+    height: 40px;
+    width: auto;
+}
+
+div.info {
+    display: flex;
+}
+
+

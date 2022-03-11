@@ -1,1 +1,55 @@
-<p>movie-details-page works!</p>
+<div class="about-content">
+
+    <div class="profile-box info-box general" fxLayout="column" *ngIf="movieDetails">
+
+        <header>
+            <div class="title">{{ movieDetails.title }}</div>
+        </header>
+
+        <div class="info-container">
+            <div class="info-line">
+                <div class="title">Overview</div>
+                <div class="info">{{movieDetails.overview}}</div>
+            </div>
+            <div class="info-line">
+                <div class="title">Poster Path</div>
+                <div class="info">{{movieDetails.poster_path}}</div>
+            </div>
+            <div class="info-line">
+                <div class="title">Release Date</div>
+                <div class="info">{{movieDetails.release_date}}</div>
+            </div>
+            <div class="info-line">
+                <div class="title">Revenue</div>
+                <div class="info">{{movieDetails.revenue}}</div>
+            </div>
+            <div class="info-line">
+                <div class="title">Vote Average</div>
+                <div class="info">{{movieDetails.vote_average}}</div>
+            </div>
+            <div class="info-line">
+                <div class="title">Vote Count</div>
+                <div class="info">{{movieDetails.vote_count}}</div>
+            </div>
+            <div class="info-line">
+                <div class="title">Languages</div>
+                <div class="info" *ngFor="let language of movieDetails.spoken_languages">
+                    {{language.english_name}}
+                </div>
+            </div>
+
+            <div class="info-line">
+                <div class="title" style="float: right">
+                    <label class="title">Rate</label>
+                    <div class="info">
+                        <input type="number" placeholder="Place your rate" matInput [formControl]="rateInput" autocomplete="off">
+                        <button type="button" class="rateBtn" (click)="rateMovie()">
+                            <mat-icon>star_rate</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
