@@ -17,7 +17,7 @@ export class CreateCollectionPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private localStorageService: LocalStorageService
   ) { 
-    this.collections = JSON.parse(this.localStorageService.get('Collections'));
+    this.collections = this.localStorageService.get('Collections') ? JSON.parse(this.localStorageService.get('Collections')) : [];
   }
 
   ngOnInit(): void {
